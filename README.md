@@ -6,18 +6,18 @@ deeds
 - id
 - title
 
-profit_levels
+grades
 - id
-- bad
-- normal
-- good
+- title
 
-log
+entry
 - id
 - deed_id
-- profit_id
+- grade_id
 - datetime_start (дату и время может отдельно хранить, чтоб быстрее доставать из базы?)
 - duration (дела могут пересекаться?)
+
+
 
 generated using Luminus version "3.46"
 
