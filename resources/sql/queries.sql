@@ -1,6 +1,6 @@
 -- ------------------------------------------------
 -- DEEDS
--- :name create-deed! :! :n
+-- :name save-deed! :! :n
 -- :doc creates a new deed record
 INSERT INTO deeds (title) VALUES (:title)
 
@@ -22,7 +22,7 @@ DELETE FROM deeds WHERE id = :id
 
 -- ------------------------------------------------
 -- GRADES
--- :name create-grade! :! :n
+-- :name save-grade! :! :n
 -- :doc creates a new grade record
 INSERT INTO grades (title) VALUES (:title)
 
@@ -44,7 +44,7 @@ DELETE FROM grades WHERE id = :id
 
 -- ------------------------------------------------
 -- ENTRIES
--- :name create-entry! :! :n
+-- :name save-entry! :! :n
 -- :doc creates a new entry record
 INSERT INTO entries (deed_id, grade_id, datetime_start)
 VALUES (:deed_id, :grade_id, :datetime_start)
