@@ -8,7 +8,7 @@ INSERT INTO deeds (title) VALUES (:title)
 -- :doc updates an existing deed record
 UPDATE deeds SET title = :title WHERE id = :id
 
--- :name get-deeds :? :n
+-- :name get-deeds :? :*
 -- :doc retrieves all deeds
 SELECT * FROM deeds
 
@@ -30,7 +30,7 @@ INSERT INTO grades (title) VALUES (:title)
 -- :doc updates an existing grade record
 UPDATE grades SET title = :title WHERE id = :id
 
--- :name get-grades :? :n
+-- :name get-grades :? :*
 -- :doc retrieves all grade records
 SELECT * FROM grades
 
@@ -53,7 +53,7 @@ VALUES (:deed_id, :grade_id, :datetime_start)
 -- :doc updates an existing entry record
 UPDATE entries SET title = :title WHERE id = :id
 
--- :name get-entries :? :n
+-- :name get-entries :? :*
 -- :doc retrieves all entries
 SELECT * FROM entries
 
