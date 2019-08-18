@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="columns">
+  <div class="column content is-two-thirds">
+      <h3 class="title">Grades</h3>
+      <ul>
+        {% for grade in grades %}
+        <li>{{grade.title}}</li>
+        {% endfor %}
+      </ul>
+      <form method="POST" action="/grades">
+        {% csrf-field %}
+        <div class="field">
+          <label class="label" for="name">Title</label>
+          <input class="input" type="text" name="title" value="{{title}}" />
+        </div>
+        <input type="submit" class="button is-primary" />
+      </form>
+  </div>
+</div>
+{% endblock %}

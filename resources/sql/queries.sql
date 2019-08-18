@@ -57,7 +57,8 @@ SELECT
 	entries.timestamp_start as timestamp_start
 FROM entries
 JOIN deeds ON entries.deed_id = deeds.id
-JOIN grades ON entries.grade_id = grades.id;
+JOIN grades ON entries.grade_id = grades.id
+ORDER BY timestamp_start DESC;
 
 -- :name get-entry :? :1
 -- :doc retrieves an entry record given the id

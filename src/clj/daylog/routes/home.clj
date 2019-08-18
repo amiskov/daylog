@@ -11,8 +11,13 @@
   (layout/render request
                  "home.html"
                  {:entries (db/get-entries)
-                  :deeds (db/get-deeds)
-                  :grades (db/get-grades)}))
+                  :grades (db/get-grades)
+                  :deeds (db/get-deeds)}))
+
+(defn grades-page [request]
+  (layout/render request
+                 "grades.html"
+                 {:grades (db/get-grades)}))
 
 (defn save-grade! [{:keys [params]}]
   (db/save-grade! params)
@@ -40,7 +45,10 @@
    {:middleware [middleware/wrap-csrf
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
-   ["/grades" {:post save-grade!}]
+
+   ["/grades" {:post save-grade!
+               :get grades-page}]
+
    ["/deeds" {:post save-deed!}]
    ["/entries" {:post save-entry!}]
    ["/about" {:get about-page}]])

@@ -25,70 +25,45 @@
       </tr>
       {% endfor %}
     </table>
-      <form method="POST" action="/entries">
-        {% csrf-field %}
-        <div class="field">
-          <label for="">Deed:</label>
-          <select class="form-control" name="deed_id">
-            {% for deed in deeds %}
-            <option value="{{deed.id}}">{{deed.title}}</option>
-            {% endfor %}
-          </select>
+    <form method="POST" action="/entries">
+      {% csrf-field %}
+      <div class="columns">
+        <div class="field column is-half">
+          <label class="label" for="">Deed:</label>
+          <div class="select">
+            <select class="form-control" name="deed_id">
+              {% for deed in deeds %}
+              <option value="{{deed.id}}">{{deed.title}}</option>
+              {% endfor %}
+            </select>
+          </div>
         </div>
 
-        <div class="field">
-          <label for="">Grade:</label>
-          <select class="form-control" name="grade_id">
-            {% for grade in grades %}
-            <option value="{{grade.id}}">{{grade.title}}</option>
-            {% endfor %}
-          </select>
+        <div class="field column is-half">
+          <label class="label" for="">Grade:</label>
+          <div class="select">
+            <select class="form-control" name="grade_id">
+              {% for grade in grades %}
+              <option {%ifequal grade.title "normal" %}selected{% endifequal %} value="{{grade.id}}">{{grade.title}}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
         </div>
+      </div>
+      <input type="submit" class="button is-primary" />
+    </form>
 
-        <!-- <div class="field">
-        <label for="">Time:</label>
-        <select class="form-control" name="timestamp_start">
-          <option value=""></option>
-        </select>
-      </div> -->
+    <hr>
 
-        <input type="submit" class="button is-primary" />
-      </form>
-
-      <hr>
-
-      <h3 class="title">Grades</h3>
-      <ul>
-        {% for grade in grades %}
-        <li>{{grade.title}}</li>
-        {% endfor %}
-      </ul>
-      <form method="POST" action="/grades">
-        {% csrf-field %}
-        <div class="field">
-          <label class="label" for="name">Title</label>
-          <input class="input" type="text" name="title" value="{{title}}" />
-        </div>
-        <input type="submit" class="button is-primary" />
-      </form>
-      <hr>
-
-      <h3 class="title">Deeds</h3>
-      <ul>
-        {% for deed in deeds %}
-        <li>
-          <p>{{deed.title}}</p>
-        </li>
-        {% endfor %}
-      </ul>
-      <form method="POST" action="/deeds">
-        {% csrf-field %}
-        <div class="field">
-          <label class="label" for="name">Title</label>
-          <input class="input" type="text" name="title" value="{{title}}" />
-        </div>
-        <input type="submit" class="button is-primary" />
-      </form>
+    <form method="POST" action="/deeds">
+      {% csrf-field %}
+      <div class="field">
+        <label class="label" for="name">New Deed:</label>
+        <input class="input" type="text" name="title" value="{{title}}" />
+      </div>
+      <input type="submit" class="button is-primary" />
+    </form>
   </div>
 </div>
 {% endblock %}
