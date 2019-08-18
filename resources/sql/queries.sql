@@ -51,7 +51,13 @@ VALUES (:deed_id, :grade_id)
 
 -- :name get-entries :? :*
 -- :doc retrieves all entries
-SELECT * FROM entries
+SELECT
+	deeds.title as deed_title,
+	grades.title as grade_title,
+	entries.timestamp_start as timestamp_start
+FROM entries
+JOIN deeds ON entries.deed_id = deeds.id
+JOIN grades ON entries.grade_id = grades.id;
 
 -- :name get-entry :? :1
 -- :doc retrieves an entry record given the id
