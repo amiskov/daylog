@@ -3,6 +3,53 @@
 {% block content %}
 <div class="columns">
   <div class="column content is-two-thirds">
+
+    <div class="columns">
+      <div class="field column is-two-thirds">
+
+        <form method="POST" action="/entries">
+          {% csrf-field %}
+          <div class="columns">
+            <div class="field column is-half">
+              <label class="label" for="">Deed:</label>
+              <div class="select">
+                <select class="form-control" name="deed_id">
+                  {% for deed in deeds %}
+                  <option value="{{deed.id}}">{{deed.title}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="field column is-half">
+              <label class="label" for="">Grade:</label>
+              <div class="select">
+                <select class="form-control" name="grade_id">
+                  {% for grade in grades %}
+                  <option {%ifequal grade.title "normal" %}selected{% endifequal %} value="{{grade.id}}">{{grade.title}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="button is-primary" />
+        </form>
+
+      </div>
+
+      <div class="column is-one-third" style="border-left: 1px solid #CCC">
+        <form method="POST" action="/deeds">
+          {% csrf-field %}
+          <div class="field">
+            <label class="label" for="name">New Deed:</label>
+            <input class="input" type="text" name="title" value="{{title}}" />
+          </div>
+          <input type="submit" class="button is-primary" />
+        </form>
+      </div>
+    </div>
+
     <h3 class="title">Entries</h3>
     <table class="table is-narrow">
       {% for entry in entries %}
@@ -25,45 +72,7 @@
       </tr>
       {% endfor %}
     </table>
-    <form method="POST" action="/entries">
-      {% csrf-field %}
-      <div class="columns">
-        <div class="field column is-half">
-          <label class="label" for="">Deed:</label>
-          <div class="select">
-            <select class="form-control" name="deed_id">
-              {% for deed in deeds %}
-              <option value="{{deed.id}}">{{deed.title}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
 
-        <div class="field column is-half">
-          <label class="label" for="">Grade:</label>
-          <div class="select">
-            <select class="form-control" name="grade_id">
-              {% for grade in grades %}
-              <option {%ifequal grade.title "normal" %}selected{% endifequal %} value="{{grade.id}}">{{grade.title}}
-              </option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-      </div>
-      <input type="submit" class="button is-primary" />
-    </form>
-
-    <hr>
-
-    <form method="POST" action="/deeds">
-      {% csrf-field %}
-      <div class="field">
-        <label class="label" for="name">New Deed:</label>
-        <input class="input" type="text" name="title" value="{{title}}" />
-      </div>
-      <input type="submit" class="button is-primary" />
-    </form>
   </div>
 </div>
 {% endblock %}
