@@ -46,12 +46,8 @@ DELETE FROM grades WHERE id = :id
 -- ENTRIES
 -- :name save-entry! :! :n
 -- :doc creates a new entry record
-INSERT INTO entries (deed_id, grade_id, datetime_start)
-VALUES (:deed_id, :grade_id, :datetime_start)
-
--- :name update-entry! :! :n
--- :doc updates an existing entry record
-UPDATE entries SET title = :title WHERE id = :id
+INSERT INTO entries (deed_id, grade_id)
+VALUES (:deed_id, :grade_id)
 
 -- :name get-entries :? :*
 -- :doc retrieves all entries

@@ -1,6 +1,84 @@
 {% extends "base.html" %}
+
 {% block content %}
-  <div class="content">
-  {{docs|markdown}}
+<div class="columns">
+  <div class="column">
+    <h3 class="title">Entries</h3>
+    <ul>
+      {% for entry in entries %}
+      <li> <time>
+          {{entry.timestamp_start|date:"yyyy-MM-dd HH:mm"}}
+        </time>
+
+        <p>{{entry.grade_id}}</p>
+        <p>{{entry.deed_id}}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    <form method="POST" action="/entries">
+      {% csrf-field %}
+      <div class="field">
+        <label for="">Deed:</label>
+        <select class="form-control" name="deed_id">
+          {% for deed in deeds %}
+            <option value="{{deed.id}}">{{deed.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="">Grade:</label>
+        <select class="form-control" name="grade_id">
+          {% for grade in grades %}
+            <option value="{{grade.id}}">{{grade.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- <div class="field">
+        <label for="">Time:</label>
+        <select class="form-control" name="timestamp_start">
+          <option value=""></option>
+        </select>
+      </div> -->
+
+      <input type="submit" class="button is-primary" />
+    </form>
+
+    <hr>
+
+    <h3 class="title">Grades</h3>
+    <ul>
+      {% for grade in grades %}
+      <li>{{grade.title}}</li>
+      {% endfor %}
+    </ul>
+    <form method="POST" action="/grades">
+      {% csrf-field %}
+      <div class="field">
+        <label class="label" for="name">Title</label>
+        <input class="input" type="text" name="title" value="{{title}}" />
+      </div>
+      <input type="submit" class="button is-primary" />
+    </form>
+    <hr>
+
+    <h3 class="title">Deeds</h3>
+    <ul>
+      {% for deed in deeds %}
+      <li>
+        <p>{{deed.title}}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    <form method="POST" action="/deeds">
+      {% csrf-field %}
+      <div class="field">
+        <label class="label" for="name">Title</label>
+        <input class="input" type="text" name="title" value="{{title}}" />
+      </div>
+      <input type="submit" class="button is-primary" />
+    </form>
   </div>
+</div>
 {% endblock %}
